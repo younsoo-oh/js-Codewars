@@ -1,0 +1,27 @@
+Complete the function that accepts a string parameter, 
+and reverses each word in the string. 
+All spaces in the string should be retained.
+
+Examples
+"This is an example!" ==> "sihT si na !elpmaxe"
+"double  spaces"      ==> "elbuod  secaps"
+
+
+My code
+function reverseWords(str) {
+  return str.split(" ").map((n) => n.split("").reverse().join("")).join(" ")
+}
+
+처음 split ["This", "is", "an", "example!"] 이 상태에서
+map으로 각 인덱스마다 다시 배열로 쪼갠다 [Array[4], Array[2], Array[2], Array[8]]
+그 후 reverse와 join으로 ["sihT", "si", "na", "!elpmaxe"] 배열 하나를 풀어주고
+마지막으로 join을 한번더 사용해서 완전히 배열을 풀어준다.
+
+
+
+Other code
+function reverseWords(str) {
+  // Go for it
+  //split words into seperate arrays
+  return str.split("").reverse().join("").split(" ").reverse().join(" ");
+}

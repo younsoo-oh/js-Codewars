@@ -1,0 +1,54 @@
+Given: an array containing hashes of names
+
+Return: a string formatted as a list of names separated 
+by commas except for the last two names, 
+which should be separated by an ampersand.
+
+Example:
+list([ {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'} ])
+// returns 'Bart, Lisa & Maggie'
+
+list([ {name: 'Bart'}, {name: 'Lisa'} ])
+// returns 'Bart & Lisa'
+
+list([ {name: 'Bart'} ])
+// returns 'Bart'
+
+list([])
+// returns ''
+
+
+My code
+function list(names){
+  if(names.length > 1){
+    const main = names.slice(0, names.length-1).map((n)=> n.name).join(", ")
+    const other = names[names.length-1].name
+    return `${main} & ${other}`
+  } else if(names.length === 1) {
+    return names[0].name
+  } else {
+    return ''
+  }
+}
+
+names의 길이에 따라 return값이 다르다.
+main: slice로 처음부터 마지막 전까지 자르고 map으로 name값만 호출하고 join으로 배열을 풀어준다.
+other: names의 마지막 name값
+names의 값이 1인경우는 그 값만 호출
+
+
+
+Other code
+function list(names){
+  return names.reduce(function(prev, current, index, array){
+    if (index === 0){
+      return current.name;
+    }
+    else if (index === array.length - 1){
+      return prev + ' & ' + current.name;
+    } 
+    else {
+      return prev + ', ' + current.name;
+    }
+  }, '');
+ }

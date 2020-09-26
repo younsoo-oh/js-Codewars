@@ -1,0 +1,26 @@
+Trolls are attacking your comment section!
+
+A common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat.
+
+Your task is to write a function that takes a string and return a new string with all vowels removed.
+
+For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+
+Note: for this kata y isn't considered a vowel.
+
+
+My code
+function disemvowel(str) {
+  const s = str.toString();
+  const result = s.replace(/a|i|u|e|o/gi,"")
+  return result
+}
+
+
+Other code
+function disemvowel(str) {
+  return str.replace(/[aeiou]/gi, '');
+}
+
+replace를 사용하여 특정문자열을 변경(기본적으로는 한개만 변경)
+정규식을 사용하면 전체를 바꿔줄수있다. g는 전역검색 i는 대/소문자 구분 무시

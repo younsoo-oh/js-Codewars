@@ -1,0 +1,53 @@
+In this kata you are required to, given a string, replace every letter with its position in the alphabet.
+
+If anything in the text isn't a letter, ignore it and don't return it.
+
+"a" = 1, "b" = 2, etc.
+
+Example
+
+alphabetPosition("The sunset sets at twelve o' clock.")
+return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11" (as a string)
+
+
+My code
+
+function alphabetPosition(text) {
+  let alpha = []
+  let t = text.toLowerCase().split("")
+  let result = []
+  for (let i =1; i<=26; i++){
+    alpha.push(String.fromCharCode(96+i))
+  }
+  for(let i=0; i<t.length; i++){
+    for(let j=0; j<alpha.length; j++){
+      if(t[i]===alpha[j]){
+        result.push(j+1)
+      }
+    }
+  }
+  return result.join(" ")
+}
+
+alpha에 알파벳을 a~z까지 각각 배열로 나열시키고 인자인 text는 소문자로 받으면서 각각 배열로
+나누어 지도록 함. 반복문을 중첩하여 text와 알파벳의 인덱스가 같은 경우 결과값으로 넣어주고
+(j+1은 인덱스가 0부터 시작하기때문) 결과값인 배열을 join으로 문자열로 풀어서 return한다.
+
+
+
+other code 1
+
+function alphabetPosition(text) {
+  return text
+    .toUpperCase()
+    .match(/[a-z]/gi)
+    .map( (c) => c.charCodeAt() - 64)
+    .join(' ');
+}
+
+
+other code 2
+
+function alphabetPosition(text) {
+  return text.match(/[a-zA-Z]/g).map( (el) => el.toLowerCase().charCodeAt() - 96 ).join(' ');
+}
