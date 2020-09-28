@@ -1,0 +1,37 @@
+Write a function that takes an integer as input, and returns the number of bits 
+that are equal to one in the binary representation of that number. 
+You can guarantee that input is non-negative.
+
+Example: The binary representation of 1234 is 10011010010, 
+so the function should return 5 in this case
+
+
+My code
+
+var countBits = function(n) {
+  const bin = n.toString(2).split("")
+  let count = 0
+  for(let i =0; i<bin.length; i++){
+    if(bin[i]==1){
+      count++
+    }
+  }
+  return count
+};
+
+
+other code 1
+
+const countBits = n => n.toString(2).split('0').join('').length;
+
+2진수 상태에서 split('0')을 하면 ["1", "", "11", "1", "", "1", ""]이 되고
+join('')으로 11111 이것의 length를 구하는 방법
+
+
+other code 2
+
+var countBits = function(n) {
+  return n.toString(2).replace(/0/g,'').length;
+};
+
+2진수 상태에서 replace를 활용하여 0을 전부 지우고 11111 만 남았을때 length를 구함
