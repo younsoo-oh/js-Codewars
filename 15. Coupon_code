@@ -1,0 +1,36 @@
+Write a function called checkCoupon which verifies that a coupon code is valid and not expired.
+
+A coupon is no more valid on the day AFTER the expiration date.
+All dates will be passed as strings in this format: "MONTH DATE, YEAR".
+
+checkCoupon("123", "123", "July 9, 2015", "July 9, 2015")  ===  true
+checkCoupon("123", "123", "July 9, 2015", "July 2, 2015")  ===  false
+checkCoupon('123a','123','September 5, 2014','October 1, 2014') === false
+
+
+
+My code
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
+  let exDate = Date.parse(expirationDate)
+  let curDate = Date.parse(currentDate)
+  if(enteredCode===correctCode){
+    if(exDate>=curDate){
+      return true
+    } else {
+    return false
+  }
+  }else {
+    return false
+  }
+}
+
+Code부분은 완전히 같은 경우만 통과
+Date.parse는 인수로 전달된 지정 시간까지의 밀리초를 숫자로 반환한다.
+숫자로 변한 현재시간보다 숫자로 변한 쿠폰날짜가 크거나 같은경우만 true를 반환
+
+
+
+other code
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
+  return enteredCode === correctCode && Date.parse(expirationDate) >= Date.parse(currentDate)
+}
