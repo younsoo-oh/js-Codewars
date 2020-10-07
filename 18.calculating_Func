@@ -21,16 +21,17 @@ function one() {}
 function two() {}
 function three() {}
 function four() {}
-function five() {return 5}
+function five(calc) {return calc ? calc(5) : 5}
 function six() {}
-function seven(calc) {calc}
+function seven(calc) {return calc ? calc(7) : 7}
 function eight() {}
 function nine() {}
 
 function plus() {}
 function minus() {}
-function times(num) {return num*num}
+function times() {return }
 function dividedBy() {}
 
-
 console.log(seven(times(five())))
+
+//https://poiemaweb.com/js-function 6.1
