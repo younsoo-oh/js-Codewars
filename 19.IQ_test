@@ -1,0 +1,31 @@
+Bob is preparing to pass IQ test. The most frequent task in this test is
+to find out which one of the given numbers differs from the others.
+Bob observed that one number usually differs from the others in evenness.
+Help Bob — to check his answers, he needs a program that among the given numbers
+finds one that is different in evenness, and return a position of this number.
+
+! Keep in mind that your task is to help Bob solve a real IQ test,
+which means indexes of the elements start from 1 (not 0)
+
+iqTest("2 4 7 8 10") => 3 // Third number is odd, while the rest of the numbers are even
+iqTest("1 2 1 1") => 2 // Second number is even, while the rest of the numbers are odd
+
+
+
+Mycode
+function iqTest(numbers){
+  const calc = numbers.split(" ").map((num) => num%2)
+  const zero = calc.filter((n)=> n === 0).length
+  const one = calc.filter((n)=> n === 1).length
+  if(zero > one){
+    return calc.indexOf(1)+1
+  } else {
+    return calc.indexOf(0)+1
+  }
+}
+
+string상태로 인자를 넣으면 split(" ") //["2", "4", "7", "8", "10"]
+그다음 map으로 각각을 2로 나누었을때 나머지를 구한다. //[0, 0, 1, 0, 0]
+zero는 calc안의 0의 갯수, one은 calc안의 1의 갯수이다.
+1의 갯수보다 0의 갯수가 많으면 calc에서 indexOf를 사용하여 1의 index위치를 구하고 +1을 해준다.
+1의 갯수가 많으면 0의 index위치를 구하고 +1을 해준다.
