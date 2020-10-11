@@ -31,3 +31,37 @@ function plus(right) {return function(left) {return left+right}}
 function minus(right) {return function(left) {return left-right}}
 function times(right) {return function (left) {return left * right}}
 function dividedBy(right) {return function(left) {return Math.floor(left/right)}}
+
+숫자 함수 안에 다른함수(여기서는 calc라 명함)가 있는 경우엔 calc(숫자)가 되고
+안에 다른함수가 없다면 그냥 숫자만 호출하도록 함
+결과값을 보면 left calc right 순서로 진행된다고 가정
+밑의 계산함수들은 오른쪽을 인자로 받고, 왼쪽의 calc를 left인자로 먼저 호출시킨다.
+마지막으로 불러온 right값과 left값을 계산시켜서 호출한다. 나눗셈은 소숫점을 없애줌
+
+
+
+other code
+var n = function(digit) {
+  return function(op) {
+    return op ? op(digit) : digit;
+  }
+};
+var zero = n(0);
+var one = n(1);
+var two = n(2);
+var three = n(3);
+var four = n(4);
+var five = n(5);
+var six = n(6);
+var seven = n(7);
+var eight = n(8);
+var nine = n(9);
+
+function plus(r) { return function(l) { return l + r; }; }
+function minus(r) { return function(l) { return l - r; }; }
+function times(r) { return function(l) { return l * r; }; }
+function dividedBy(r) { return function(l) { return l / r; }; }
+
+첫줄은 function n(digit) 과 같음, digit이 숫자 op가 계산함수라고 보면 된다.
+op(다른 함수)를 호출하는데 op가 있는 경우 op(digit) 아니면 digit만 불러옴
+r은 단순 숫자값이 될것이고, function(l)은 위에 불러온 op(digit)값을 다시 숫자로 부르기 위함

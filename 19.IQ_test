@@ -29,3 +29,34 @@ string상태로 인자를 넣으면 split(" ") //["2", "4", "7", "8", "10"]
 zero는 calc안의 0의 갯수, one은 calc안의 1의 갯수이다.
 1의 갯수보다 0의 갯수가 많으면 calc에서 indexOf를 사용하여 1의 index위치를 구하고 +1을 해준다.
 1의 갯수가 많으면 0의 index위치를 구하고 +1을 해준다.
+
+
+other code
+function iqTest(numbers){
+  var nums = numbers.split(" ").map(x => x % 2);  
+  var sum = nums.reduce((a,b) => a + b);  
+  var target = sum > 1 ? 0 : 1;
+  
+  return nums.indexOf(target) + 1;
+}
+
+iqTest("2 4 7 8 10")의 예시
+nums는 [0, 0, 1, 0, 0] 그렇기때문에 sum은 1이된다
+target은 sum이 1보다 큰경우는 0이 한개이기에 target=0, 반대는 1만 남기에 target=1이 됨
+indexOf로 target의 인덱스위치를 찾고 +1을 해준다.
+
+
+other code 2
+function iqTest(numbers){
+  numbers = numbers.split(" ").map(function(el){return parseInt(el)});
+  
+  var odd = numbers.filter(function(el){ return el % 2 === 1});
+  var even = numbers.filter(function(el){ return el % 2 === 0});
+  
+  return odd.length < even.length ? (numbers.indexOf(odd[0]) + 1) : (numbers.indexOf(even[0]) + 1);
+}
+
+iqTest("2 4 7 8 10")의 예시
+numbers는 [2, 4, 7, 8, 10] odd는 [7] even은 [2, 4, 8, 10]
+odd의 길이와 even의 길이를 비교하여 작은수(무조건 1개,인덱스는 0이됨)를 찾고 +1을 해준다.
+
