@@ -42,12 +42,14 @@ My code
 function rank(st, we, n) {
   const som = st.split(",")
   console.log(som)
-  const somLen = som.map((s) => s.length)
-  console.log(somLen)
-  const change = st.toLowerCase().match(/[a-z]/gi).map((el) => el.charCodeAt()-96)
-  console.log(change)
+  const arr = []
+  for(let i=0; i<som.length; i++){
+    const leng = som[i].length
+    const change = som[i].toLowerCase().match(/[a-z]/gi).map((el) => el.charCodeAt()-96).reduce((pre,cur) => pre+cur)
+    const point = (leng+change)*we[i]
+    arr.push(point)
+  }
+  return arr
 }
 
-
-console.log((rank("Lagon,Lily", [1, 5], 2)))
-
+console.log(rank("COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH", [1, 4, 4, 5, 2, 1], 4))
