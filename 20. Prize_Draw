@@ -41,15 +41,30 @@ See Examples Test Cases for more examples.
 My code
 function rank(st, we, n) {
   const som = st.split(",")
-  console.log(som)
   const arr = []
+  const brr = []
   for(let i=0; i<som.length; i++){
+    if(st === ''){
+      return "No participants"
+    } if(n>som.length){
+      return "Not enough participants"
+    }
     const leng = som[i].length
     const change = som[i].toLowerCase().match(/[a-z]/gi).map((el) => el.charCodeAt()-96).reduce((pre,cur) => pre+cur)
     const point = (leng+change)*we[i]
     arr.push(point)
+    brr.push(point)
   }
-  return arr
+  console.log(som)
+  console.log(arr)
+  console.log(brr)
+  const num = arr.indexOf(brr.sort((a,b) => b-a)[n-1])
+  if (num >=2){
+    
+  }
+  console.log(num)
+  return som[num]
 }
 
-console.log(rank("COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH", [1, 4, 4, 5, 2, 1], 4))
+//console.log(rank("COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH", [1, 4, 4, 5, 2, 1], 4))
+console.log(rank("Emily,Madison,Robert,Addison,Mia,Liam,Samantha,Lagon,Ava,Emma,Andrew,Isabella,Natalie,Aiden,Alexander,William,Chloe,Elizabeth,Grace,Sophia,Avery,Willaim,Mason,Jacob", [6,2,1,3,1,4,1,2,2,2,3,2,6,3,5,2,4,6,3,5,2,3,2,3], 18))
