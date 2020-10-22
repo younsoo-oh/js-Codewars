@@ -1,0 +1,28 @@
+Given an array of integers, find the one that appears an odd number of times.
+
+There will always be only one integer that appears an odd number of times.
+
+ex)
+[20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5] //return 5
+[1,1,2,-2,5,2,4,4,-1,-2,5] //return -1
+[1,1,1,1,1,1,10,1,1,1,1] //return 10
+[5,4,3,2,1,5,4,3,2,10,10] //return 1
+
+
+
+My code
+function findOdd(A) {
+  const find = A.reduce((t,a) => {
+    if(t[a]){
+      t[a]++
+    }
+    else {
+      t[a] =1
+    }
+    return t
+  },{})
+  return find
+}
+
+
+console.log(findOdd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
