@@ -12,17 +12,33 @@ ex)
 
 My code
 function findOdd(A) {
-  const find = A.reduce((t,a) => {
-    if(t[a]){
-      t[a]++
+  const find = A.reduce((prev,curr) => {
+    if(curr in prev){
+      prev[curr]++
     }
     else {
-      t[a] =1
+      prev[curr] = 1
     }
-    return t
+    return prev
   },{})
-  return find
+  for(let values in find){
+    if(values % 2 === 1){
+      return find[values]
+    }
+  }
+
 }
 
 
 console.log(findOdd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
+
+//{1: 2, 2: 2, 3: 2, 4: 2, 5: 3…}
+
+/*
+ const objVal = Object.values(find)
+  for(let i=0; i<=objVal.length; i++){
+    if(objVal[i] % 2 === 1){
+      return objVal[i]
+    }
+  
+  }*/ 
