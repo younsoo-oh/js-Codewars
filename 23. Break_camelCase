@@ -1,0 +1,24 @@
+Complete the solution so that the function will break up camel casing, using a space between words.
+
+Example
+solution("camelCasing")  ==  "camel Casing"
+solution('camelCasingTest') == "camel Casing Test"
+
+
+
+My code
+function solution(string) {
+  // 배열로 분리 -> 배열안에 대문자찾기 ->
+  // 대문자 앞에 ' '을 삽입-> 문자열로 되돌리기
+  const arr = string.split('')
+  // ["c", "a", "m", "e", "l", "C", "a", "s", "i", "n", …]
+  for(let i = 0; i<=arr.length; i++){
+    if(arr[i] === arr[i].toUpperCase()){
+      const num = arr.indexOf(arr[i])
+      arr.splice(num,1,' ',arr[i])
+      return arr.join("")
+    }
+  }   
+}
+
+console.log(solution("camelCasing"))
