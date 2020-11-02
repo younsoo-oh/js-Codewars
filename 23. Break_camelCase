@@ -8,5 +8,50 @@ solution('camelCasingTest') == "camel Casing Test"
 
 My code
 function solution(string) {
+  const arr = string.split('')
+  for(let i = 0; i<=arr.length; i++){
+    if(arr[i] === arr[i].toUpperCase()){
+      const num = arr.indexOf(arr[i])
+      arr.splice(num,1,' ',arr[i])
+      return arr.join("")
+    }
+  }   
+}
+
+이 경우에는 indexOf가 num을 1개값밖에 찾지 못해서 solution('camelCasingTest')를 한경우
+camel Casing Test가 아닌 camel CasingTest 이런식으로 호출이 된다. 
+
+function solution(string) {
   return string.split(/(?=[A-Z])/).join(' ')
 }
+
+split(/([A-Z])/) 이면 ["camel", "C", "asing", "T", "est"]가 되고,
+split(/(?=[A-Z])/) 이면 ["camel", "Casing", "Test"] 가 된다.
+
+
+
+other code
+function solution(string) {
+  return(string.replace(/([A-Z])/g, ' $1'));
+}
+
+대문자값만 찾아서 공백을 넣도록 함
+
+function solution(string) {
+  return string.replace(/([a-z])([A-Z])/g, "$1 $2");
+}
+
+소문자값과 대문자값을 찾아서 소문자와 대문자간 공백을 넣도록 함
+
+function solution(string) {
+  string = string.split('').map((el) => {
+    if (el === el.toUpperCase()) {
+      el = ' ' + el
+    }
+    return el
+  })
+  return string.join('')
+}
+
+배열함수를 활용한 방법으로 if문으로 요소에 대문자가 들어있는 경우 공백을 추가하도록 하였고,
+마지막 join으로 다시 문자열형태로 바꿔주었다.    
